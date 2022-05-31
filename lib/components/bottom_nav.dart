@@ -49,6 +49,7 @@ class _BottomNavState extends State<BottomNav> {
             icon: Image.asset(
               'assets/icons/home.png',
               width: 20,
+              color: pageIndex == 0 ? yellowDeep : greyAccent
             ),
           ),
           BottomNavigationBarItem(
@@ -56,6 +57,7 @@ class _BottomNavState extends State<BottomNav> {
             icon: Image.asset(
               'assets/icons/menu.png',
               width: 20,
+               color: pageIndex == 1 ? yellowDeep : greyAccent
             ),
           ),
           BottomNavigationBarItem(
@@ -63,6 +65,7 @@ class _BottomNavState extends State<BottomNav> {
             icon: Image.asset(
               'assets/icons/heart.png',
               width: 20,
+               color: pageIndex == 2 ? yellowDeep : greyAccent
             ),
           ),
           BottomNavigationBarItem(
@@ -70,6 +73,7 @@ class _BottomNavState extends State<BottomNav> {
             icon: Image.asset(
               'assets/icons/user.png',
               width: 20,
+               color: pageIndex == 3 ? yellowDeep : greyAccent
             ),
           ),
         ],

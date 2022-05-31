@@ -4,10 +4,8 @@ import 'package:provider/provider.dart';
 
 import '../providers/products.dart';
 
-
-
 class SingleProductGrid extends StatelessWidget {
-    final int id;
+  final int id;
   final String name;
   final String imageAsset;
   final double price;
@@ -24,7 +22,7 @@ class SingleProductGrid extends StatelessWidget {
     return Container(
       // height: 180,
       // width: 210,
-      margin: const EdgeInsets.only(right: 5),
+      margin: const EdgeInsets.only(bottom: 5, right: 5),
       padding: const EdgeInsets.all(5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -33,7 +31,7 @@ class SingleProductGrid extends StatelessWidget {
       child: Stack(
         children: [
           Container(
-            height: 50,
+            height: 100,
             width: double.infinity,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
@@ -53,16 +51,14 @@ class SingleProductGrid extends StatelessWidget {
                   prodData.toggleFav(id);
                 },
                 icon: Icon(
-                  prodData.isFav(id)
-                      ? Icons.favorite
-                      : Icons.favorite_border,
+                  prodData.isFav(id) ? Icons.favorite : Icons.favorite_border,
                   color: Colors.red,
                 ),
               ),
             ),
           ),
           Positioned(
-            bottom: 20,
+            bottom: 1,
             left: 30,
             right: 30,
             child: Column(
@@ -73,15 +69,15 @@ class SingleProductGrid extends StatelessWidget {
                   style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
-                      fontSize: 18),
+                      fontSize: 15),
                 ),
-                const SizedBox(height: 10),
                 Text(
                   '\$${price}',
                   style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: yellowDeep,
-                      fontSize: 18),
+                    fontWeight: FontWeight.bold,
+                    color: yellowDeep,
+                    fontSize: 15,
+                  ),
                 ),
               ],
             ),

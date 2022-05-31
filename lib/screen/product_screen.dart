@@ -9,11 +9,10 @@ class ProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProductGridView(
-      products: Provider.of<ProductData>(
-        context,
-        listen: false,
-      ).availableProducts,
+    return Consumer<ProductData>(
+      builder: (context, prod, child) => ProductGridView(
+        products: prod.availableProducts,
+      ),
     );
   }
 }
