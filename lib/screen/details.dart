@@ -36,7 +36,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
         height: 40,
         width: 40,
         margin: const EdgeInsets.only(bottom: 5),
-
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: color,
@@ -148,7 +147,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       children: product.imageUrl
                           .map(
                             (image) => ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: const BorderRadius.only(
+                                bottomRight: Radius.circular(30),
+                                bottomLeft: Radius.circular(30),
+                              ),
                               child: Image.network(
                                 image,
                                 fit: BoxFit.cover,
@@ -168,14 +170,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         borderRadius: BorderRadius.circular(30),
                         color: Colors.grey.withOpacity(0.4),
                       ),
-                      child:ListView.builder(
-                        padding:EdgeInsets.only(top:10),
-                      itemCount: colors.length,
-                      itemBuilder: (context, index) => colorContainer(
-                        colors[index],
-                        index,
+                      child: ListView.builder(
+                        padding: EdgeInsets.only(top: 10),
+                        itemCount: colors.length,
+                        itemBuilder: (context, index) => colorContainer(
+                          colors[index],
+                          index,
+                        ),
                       ),
-                    ),
                     ),
                   )
                 ],
