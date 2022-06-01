@@ -1,5 +1,6 @@
 import 'package:ad_ecom_ui/Home/little_single_product_view.dart';
 import 'package:ad_ecom_ui/Home/single_list.dart';
+import 'package:ad_ecom_ui/screen/details.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../components/custom_container.dart';
@@ -85,12 +86,18 @@ class HomeScreen extends StatelessWidget {
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: prodData.newArrivals.length,
-              itemBuilder: (context, index) => SingleProductList(
-                    id: prodData.newArrivals[index].id,
-                    name: prodData.newArrivals[index].name,
-                    imageAsset: prodData.newArrivals[index].imageUrl[0],
-                    price: prodData.newArrivals[index].price,
-                  ),
+              itemBuilder: (context, index) => GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed(DetailsScreen.routeName,
+                      arguments: {'id': prodData.newArrivals[index].id});
+                },
+                child: SingleProductList(
+                  id: prodData.newArrivals[index].id,
+                  name: prodData.newArrivals[index].name,
+                  imageAsset: prodData.newArrivals[index].imageUrl[0],
+                  price: prodData.newArrivals[index].price,
+                ),
+              ),
             ),
           ),
           const SizedBox(height: 10),
@@ -103,11 +110,17 @@ class HomeScreen extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 reverse: true,
                 itemCount: prodData.availableProducts.length,
-                itemBuilder: (context, index) => LittleSingleProduct(
-                  id: prodData.availableProducts[index].id,
-                  name: prodData.availableProducts[index].name,
-                  imageAsset: prodData.availableProducts[index].imageUrl[0],
-                  price: prodData.availableProducts[index].price,
+                itemBuilder: (context, index) => GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(DetailsScreen.routeName,
+                        arguments: {'id': prodData.availableProducts[index].id});
+                  },
+                  child: LittleSingleProduct(
+                    id: prodData.availableProducts[index].id,
+                    name: prodData.availableProducts[index].name,
+                    imageAsset: prodData.availableProducts[index].imageUrl[0],
+                    price: prodData.availableProducts[index].price,
+                  ),
                 ),
               ),
             ),

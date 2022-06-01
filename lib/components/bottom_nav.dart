@@ -32,7 +32,14 @@ class _BottomNavState extends State<BottomNav> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+      ),
+    );
+
     return Scaffold(
+      extendBodyBehindAppBar: pageIndex == 3 ? true : false,
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -49,7 +56,7 @@ class _BottomNavState extends State<BottomNav> {
             icon: Image.asset(
               'assets/icons/home.png',
               width: 20,
-              color: pageIndex == 0 ? yellowDeep : greyAccent
+              color: pageIndex == 0 ? yellowDeep : greyAccent,
             ),
           ),
           BottomNavigationBarItem(
@@ -57,7 +64,7 @@ class _BottomNavState extends State<BottomNav> {
             icon: Image.asset(
               'assets/icons/menu.png',
               width: 20,
-               color: pageIndex == 1 ? yellowDeep : greyAccent
+              color: pageIndex == 1 ? yellowDeep : greyAccent,
             ),
           ),
           BottomNavigationBarItem(
@@ -65,7 +72,7 @@ class _BottomNavState extends State<BottomNav> {
             icon: Image.asset(
               'assets/icons/heart.png',
               width: 20,
-               color: pageIndex == 2 ? yellowDeep : greyAccent
+              color: pageIndex == 2 ? yellowDeep : greyAccent,
             ),
           ),
           BottomNavigationBarItem(
@@ -73,54 +80,57 @@ class _BottomNavState extends State<BottomNav> {
             icon: Image.asset(
               'assets/icons/user.png',
               width: 20,
-               color: pageIndex == 3 ? yellowDeep : greyAccent
+              color: pageIndex == 3 ? yellowDeep : greyAccent,
             ),
           ),
         ],
       ),
-      backgroundColor: themeColor,
-      appBar: AppBar(
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: themeColor,
-        ),
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: RichText(
-          text: const TextSpan(
-            text: 'Howdy, What Are You Looking For? 👀',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Montserrat',
-              fontSize: 22,
-              color: Colors.black,
-            ),
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 15.0),
-            child: CircleAvatar(
-              backgroundColor: Colors.white,
-              child: Badge(
-                badgeColor: yellowDeep,
-                badgeContent: const Text(
-                  '1',
+      backgroundColor: pageIndex == 3 ? yellowDeep : themeColor,
+      appBar: pageIndex == 3
+          ? null
+          : AppBar(
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              title: RichText(
+                text: const TextSpan(
+                  text: 'Howdy, What Are You Looking For? 👀',
                   style: TextStyle(
-                    fontSize: 10,
-                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Montserrat',
+                    fontSize: 22,
+                    color: Colors.black,
                   ),
                 ),
-                child: const Icon(
-                  Icons.shopping_cart_outlined,
-                  color: Colors.black,
-                ),
               ),
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 15.0),
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: Badge(
+                      badgeColor: yellowDeep,
+                      badgeContent: const Text(
+                        '1',
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.white,
+                        ),
+                      ),
+                      child: const Icon(
+                        Icons.shopping_cart_outlined,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                )
+              ],
             ),
-          )
-        ],
-      ),
       body: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: pageIndex == 3
+            ? EdgeInsets.zero
+            : const EdgeInsets.all(
+                15,
+              ),
         child: _pages[pageIndex],
       ),
     );
